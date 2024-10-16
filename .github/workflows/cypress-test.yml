@@ -32,17 +32,17 @@ jobs:
       - name: Upload test reports
         uses: actions/upload-artifact@v3
         with:
-          name: cypress-reports
-          path: reports/*.xml
+          name: test-reports
+          path: reports/junit/*.xml
 
       - name: Upload video recordings
         uses: actions/upload-artifact@v3
         with:
-          name: cypress-videos
+          name: test-videos
           path: cypress/videos
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         with:
-          name: cypress-screenshots
+          name: test-screenshots
           path: cypress/screenshots
