@@ -34,7 +34,7 @@ jobs:
 
       # Optional: Generate and display test report using mochawesome
       - name: Generate Cypress report
-        run: npm run report
+        run: npm run test:report
 
       # Uploading test artifacts for later review (screenshots, videos, etc.)
       - name: Upload Cypress artifacts
