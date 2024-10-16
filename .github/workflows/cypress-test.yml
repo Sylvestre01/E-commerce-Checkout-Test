@@ -32,17 +32,18 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
 
-      # Optional: Generate and display test report using mochawesome
-      - name: Generate Cypress report
-        run: npm run test:report
-
       # Uploading test artifacts for later review (screenshots, videos, etc.)
       - name: Upload Cypress artifacts
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: cypress-artifacts
-          path: |
-            cypress/screenshots
-            cypress/videos
-            cypress/reports
+          path: cypress/reports/report.html
+
+      - name: Upload Cypress Screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+

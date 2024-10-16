@@ -19,14 +19,13 @@ module.exports = defineConfig({
 
       return config;
     },
+    pageLoadTimeout: 120000,
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
       reportDir: 'cypress/reports',
       overwrite: true,
-      html: true,
+      html: false,
       json: true,
-      charts: true,
       embeddedScreenshots: true,
-      inlineAssets: true
   },
 }});

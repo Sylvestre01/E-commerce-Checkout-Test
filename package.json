@@ -4,10 +4,7 @@
   "description": "cypress test automation framework",
   "main": "index.js",
   "scripts": {
-    "test:report": "npm run report:pre && npx cypress run && npm run report:post",
-    "report:pre": "rimraf cypress/reports && mkdirp cypress/reports",
-    "report:post": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/report.json && npx mochawesome-report-generator cypress/reports/report.json",
-    "test:all": "npx cypress run",
+    "test:run": "npx cypress run",
     "test:chrome": "npx cypress run --browser chrome",
     "test:firefox": "npx cypress run --browser firefox",
     "test:edge": "npx cypress run --browser edge",
