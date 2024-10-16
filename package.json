@@ -4,6 +4,11 @@
   "description": "cypress test automation framework",
   "main": "index.js",
   "scripts": {
+    "reports-junit:delete": "node delete-junit-reports.mjs",
+    "reports-junit:combine": "jrm cypress/reports/junit/combined-report.xml \"cypress/reports/junit/*.xml\"",
+    "report:pre": "npm run reports-junit:delete",
+    "report:post": "npm run reports-junit:combine",
+    "test:report": "npm run report:pre && npx cypress run && npm run report:post",
     "test:run": "npx cypress run",
     "test:chrome": "npx cypress run --browser chrome",
     "test:firefox": "npx cypress run --browser firefox",
@@ -30,10 +35,9 @@
     "cypress-mochawesome-reporter": "^3.5.1",
     "cypress-multi-reporters": "^1.6.3",
     "cypress-xpath": "^2.0.1",
+    "junit-report-merger": "^7.0.0",
     "mkdirp": "^3.0.1",
-    "mochawesome": "^7.1.3",
-    "mochawesome-merge": "^4.3.0",
-    "mochawesome-report-generator": "^6.2.0",
+    "mocha-junit-reporter": "^2.2.1",
     "rimraf": "^6.0.1"
   },
   "dependencies": {
