@@ -21,28 +21,29 @@ describe('E-commerce Checkout Process', () => {
         cy.task('logMessage', 'Clicking on Shop by Category');
         dashboardPage.clickShopByCategory();
         // Assertion: Verify the category page is displayed
-        cy.contains('Top categories').should('be.visible');
+        expect(cy.contains('Top categories').should('be.visible'));
 
 
         // Step 2: Click on MP3 Player
         cy.task('logMessage', 'Clicking on MP3 Player category');
         dashboardPage.clickMP3PlayerCategory();
         // Assertion: Verify MP3 player category page is displayed
-        cy.url().should('include', 'path=34');
+        expect(cy.url().should('include', 'path=34'));
 
 
         // Step 3: Click on a product
         cy.task('logMessage', 'Selecting a product');
         mp3PlayerPage.clickOnFirstProduct();
         // Assertion: Verify product page is displayed
-        cy.url().should('include', 'product/product');
-        cy.contains('HTC Touch HD').should('be.visible');
+        expect(cy.url().should('include', 'product/product'));
+        expect(cy.contains('HTC Touch HD').should('be.visible'));
+
 
         // Step 4: Proceed to checkout
         cy.task('logMessage', 'Adding product to cart and proceeding to checkout');
         productPage.click_buy_btn();
         // Assertion: Verify product page is displayed
-        cy.contains('Account').should('be.visible');
+        expect(cy.contains('Account').should('be.visible'));
 
 
         // Step 5: Fill in the details
@@ -67,14 +68,15 @@ describe('E-commerce Checkout Process', () => {
         checkoutPage.check_terms_conditions()
         checkoutPage.click_continue_btn()
         // Assertion: Verify newsletter checkbox is unchecked
-        cy.get('input[name="newsletter"]').should('not.be.checked');
+        expect(cy.get('input[name="newsletter"]').should('not.be.checked'));
+
 
         // Step 7: Complete checkout
         cy.task('logMessage', 'Confirming the order');
         checkoutPage.click_confirm_order();
         // Assertion: Verify order confirmation
-        cy.url().should('include', '/success');
-        cy.contains('Your order has been placed').should('be.visible');
+        expect(cy.url().should('include', '/success'));
+        expect(cy.contains('Your order has been placed').should('be.visible'));
     });
 
     afterEach(() => {
