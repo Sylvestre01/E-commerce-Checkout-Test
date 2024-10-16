@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test:report": "npm run report:pre && npx cypress run && npm run report:post",
-    "report:pre": "rm -rf cypress/reports && mkdir -p cypress/reports",
+    "report:pre": "rimraf cypress/reports && mkdirp cypress/reports",
     "report:post": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/report.json && npx mochawesome-report-generator cypress/reports/report.json",
-    "test:all": "npx cypress run --headed",
-    "test:chrome": "npx cypress run --headed --browser chrome",
+    "test:all": "npx cypress run",
+    "test:chrome": "npx cypress run --browser chrome",
     "test:firefox": "npx cypress run --browser firefox",
     "test:edge": "npx cypress run --browser edge",
     "generate-fake-data": "node ./scripts/generateFakeData.js"
@@ -33,9 +33,11 @@
     "cypress-mochawesome-reporter": "^3.5.1",
     "cypress-multi-reporters": "^1.6.3",
     "cypress-xpath": "^2.0.1",
+    "mkdirp": "^3.0.1",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
-    "mochawesome-report-generator": "^6.2.0"
+    "mochawesome-report-generator": "^6.2.0",
+    "rimraf": "^6.0.1"
   },
   "dependencies": {
     "winston": "^3.15.0"

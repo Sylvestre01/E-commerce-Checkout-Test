@@ -1,12 +1,16 @@
 import {checkoutPage, dashboardPage, mp3PlayerPage, faker, productPage, dataGenerator} from "../utils/imports";
 import {ENDPOINT} from "../config/CONSTANTS";
+import {generateCheckoutData} from "../../../scripts/generateFakeData";
 
 let password = dataGenerator.generateRandomCode(6)
 let confirmPassword = password
 describe('E-commerce Checkout Process', () => {
+    let userData;
+    before(() => {// Generate fake user data before the tests run
+        userData = generateCheckoutData();
+    });
 
-
-    before(() => {
+    beforeEach(() => {
         // Navigate to the website before the tests
         cy.visit(ENDPOINT);
         cy.task('logMessage', 'Visiting the dashboard page');
@@ -43,17 +47,17 @@ describe('E-commerce Checkout Process', () => {
 
         // Step 5: Fill in the details
         cy.task('logMessage', 'Submitting personal details');
-        checkoutPage.enter_first_Name(faker.person.firstName());
-        checkoutPage.enter_last_Name(faker.person.lastName());
-        checkoutPage.enter_email(faker.internet.email());
-        checkoutPage.enter_telephone("+2349999999891");
+        checkoutPage.enter_first_Name(userData.firstName);
+        checkoutPage.enter_last_Name(userData.lastName);
+        checkoutPage.enter_email(userData.email);
+        checkoutPage.enter_telephone(userData.phoneNumber);
         checkoutPage.enter_password(password)
         checkoutPage.enter_confirm_password(confirmPassword)
-        checkoutPage.enter_address(faker.location.streetAddress())
-        checkoutPage.enter_city(faker.location.city())
-        checkoutPage.enter_postcode(faker.location.zipCode())
-        checkoutPage.enter_country(faker.location.country())
-        checkoutPage.enter_state(faker.location.state())
+        checkoutPage.enter_address(userData.address)
+        checkoutPage.enter_city(userData.city)
+        checkoutPage.enter_postcode(userData.zipCode)
+        checkoutPage.enter_country(userData.country)
+        checkoutPage.enter_state(userData.state)
 
 
         // Step 6: Uncheck the store newsletter
