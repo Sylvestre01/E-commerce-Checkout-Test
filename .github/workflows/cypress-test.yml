@@ -30,11 +30,11 @@ jobs:
         run: npm run generate-fake-data
 
       - name: Run Cypress tests
-        run: npm run test
+        run: npx cypress run
 
       # Optional: Generate and display test report using mochawesome
       - name: Generate Cypress report
-        run: npm run test:report
+        run: npm run report
 
       # Uploading test artifacts for later review (screenshots, videos, etc.)
       - name: Upload Cypress artifacts
