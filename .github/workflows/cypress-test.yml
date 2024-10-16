@@ -28,13 +28,13 @@ jobs:
       - name: Run Cypress tests
         run: |
           mkdir -p reports 
-          npx cypress run --reporter mocha-junit-reporter --reporter-options "mochaFile=reports/junit-[hash].xml"
+          npx cypress run --reporter mocha-junit-reporter --reporter-options "mochaFile=reports/junit-result.xml"
 
       - name: Upload test reports
         uses: actions/upload-artifact@v3
         with:
           name: test-reports
-          path: reports/junit/
+          path: reports/junit-result.xml
 
       - name: Upload video recordings
         uses: actions/upload-artifact@v3
