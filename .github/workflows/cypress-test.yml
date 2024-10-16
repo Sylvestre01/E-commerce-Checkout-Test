@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '20' # specify the Node.js version
+          node-version: '20'
 
       - name: Install dependencies
         run: |
@@ -30,19 +30,19 @@ jobs:
           npx cypress run --reporter mocha-junit-reporter --reporter-options "mochaFile=reports/junit-[hash].xml"
 
       - name: Upload test reports
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: test-reports
+          name: cypress-reports
           path: reports/*.xml
 
       - name: Upload video recordings
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: test-videos
+          name: cypress-videos
           path: cypress/videos
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: test-screenshots
+          name: cypress-screenshots
           path: cypress/screenshots
